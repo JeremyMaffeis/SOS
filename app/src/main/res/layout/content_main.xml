@@ -13,9 +13,13 @@
     tools:context="com.ingesup.sos.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <!---<TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />-->
+        android:text="@string/btn_photo"
+        android:onClick="onClick"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp" />
 
 </RelativeLayout>
