@@ -1,5 +1,7 @@
 package com.ingesup.sos;
 
+
+import android.hardware.Camera;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -18,10 +20,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Camera camera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,5 +120,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void onClick (View view){
+        camera.startPreview();
+        camera.takePicture(null, null,
+                new PhotoHandler(getApplicationContext()));
     }
 }
