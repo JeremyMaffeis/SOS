@@ -7,6 +7,7 @@ import android.hardware.Camera.CameraInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import com.ingesup.sos.R;
 
@@ -35,12 +36,6 @@ class MakePhotoActivity extends Activity {
                 camera = Camera.open(cameraId);
             }
         }
-    }
-
-    public void onClick(View view) {
-        camera.startPreview();
-        camera.takePicture(null, null,
-                new PhotoHandler(getApplicationContext()));
     }
 
     private int findFrontFacingCamera() {
