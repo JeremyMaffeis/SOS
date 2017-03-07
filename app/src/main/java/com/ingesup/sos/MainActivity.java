@@ -21,7 +21,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 
@@ -31,12 +33,34 @@ public class MainActivity extends AppCompatActivity {
 
     private Camera camera;
 
+    public Spinner spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        //Récupération du Spinner déclaré dans le fichier main.xml de res/layout
+        spinner = (Spinner) findViewById(R.id.spinner);
+        //Création d'une liste d'élément à mettre dans le Spinner(pour l'exemple)
+        ArrayList List = new ArrayList();
+        List.add("Accident Routier");
+        List.add("Viol");
+        List.add("Cambriolage");
+        List.add("Incendie");
+
+         /*Le Spinner a besoin d'un adapter pour sa presentation alors on lui passe le context(this) et
+                un fichier de presentation par défaut( android.R.layout.simple_spinner_item)
+        Avec la liste des elements (exemple) */
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,List);
+
+        /* On definit une présentation du spinner quand il est déroulé         (android.R.layout.simple_spinner_dropdown_item) */
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Enfin on passe l'adapter au Spinner et c'est tout
+        spinner.setAdapter(adapter);
+
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -140,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     public void onClick (View view){
         camera.startPreview();
         camera.takePicture(null, null,
